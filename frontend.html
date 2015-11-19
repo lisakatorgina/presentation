@@ -8,7 +8,12 @@
 	<link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen.css">
 	<style type="text/css">
 		.code-section {
-			font-size: 16px;
+			font-size: 14px;
+		}
+		pre.half {
+			width: 49%;
+			display: inline-block;
+			vertical-align: top;
 		}
 	</style>
 </head>
@@ -47,7 +52,7 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>Что было раньше.</h2>
-		<p>Раньше популярен был термин &laquo;Client-side разработка&raquo;, он включал в себя разработку всего, что испоняется на клиенте, т.е. в браузере.</p>
+		<p>Client-side:</p>
 		<ul>
 			<li class="next">HTML</li>
 			<li class="next">CSS</li>
@@ -57,7 +62,6 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>Что же изменилось.</h2>
-		<p>За несколько лет, особенно в последнее время появилось много нового.</p>
 		<ul>
 			<li class="next">Новые технологии</li>
 			<li class="next">Новые инструменты</li>
@@ -112,123 +116,129 @@
 		</pre>
 	</div></section>
 	<section class="slide"><div>
-		<h2>All Kind of Lists</h2>
-		<ol>
-			<li>Simple lists are marked with bullets</li>
-			<li>Ordered lists begin with a number</li>
-			<li>You can even nest lists one inside another
-				<ul>
-					<li>Or mix their types</li>
-					<li>But do not go too far</li>
-					<li>Otherwise audience will be bored</li>
-				</ul>
-			</li>
-			<li>Look, seven rows exactly!</li>
-		</ol>
-	</div></section>
-
-	<section class="slide"><div>
-		<h2>Serious Citations</h2>
-		<figure>
-			<blockquote>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-			</blockquote>
-			<figcaption>Marcus Tullius Cicero</figcaption>
-		</figure>
+		<h2>CSS</h2>
+		<ul>
+			<li>Препроцессоры (less, sass, stylus)</li>
+			<li>Постпроцссоры (autoprefixer, csscomb)</li>
+			<li>PostCss (плагины)</li>
+		</ul>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Code Samples</h2>
-		<pre>
-			<code>&lt;!DOCTYPE html&gt;</code>
-			<code>&lt;html lang="en"&gt;</code>
-			<code><mark>&lt;head&gt;</mark> <mark class="comment">&lt;!--Comment--&gt;</mark></code>
-			<code>    &lt;title&gt;Shower&lt;/title&gt;</code>
-			<code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
-			<code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
-			<code><mark>&lt;/head&gt;</mark></code>
+		<h2>Препроцессоры</h2>
+		<ul>
+			<li>вложенность</li>
+			<li>переменные</li>
+			<li>миксины</li>
+			<li>мат-выражения</li>
+			<li>логика</li>
+		</ul>
+	</div></section>
+	<section class="slide code-section"><div>
+		<pre class="half">
+			<code>ul.menu {</code>
+			<code>	width: 100%;</code>
+			<code>	background: #fff;</code>
+			<code>	li {</code>
+			<code>		display: inline-block;</code>
+			<code>		margin: 0 20px;</code>
+			<code>		&:last-child {</code>
+			<code>			margin-left: 0;</code>
+			<code>		}</code>
+			<code>	}</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>ul.menu {</code>
+			<code>	width: 100%;</code>
+			<code>	background: #fff;</code>
+			<code>}</code>
+			<code>ul.menu li {</code>
+			<code>	display: inline-block;</code>
+			<code>	margin: 0 20px;</code>
+			<code>}</code>
+			<code>ul.menu li:last-child {</code>
+			<code>	margin-left: 0;</code>
+			<code>}</code>
+		</pre>
+	</div></section>
+	<section class="slide code-section"><div>
+		<pre class="half">
+			<code>.menu {</code>
+			<code>	width: 100%;</code>
+			<code>	background: #fff;</code>
+			<code>	&__item {</code>
+			<code>		display: inline-block;</code>
+			<code>		margin: 0 20px;</code>
+			<code>		&_last {</code>
+			<code>			margin-left: 0;</code>
+			<code>		}</code>
+			<code>	}</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>.menu {</code>
+			<code>	width: 100%;</code>
+			<code>	background: #fff;</code>
+			<code>}</code>
+			<code>.menu__item {</code>
+			<code>	display: inline-block;</code>
+			<code>	margin: 0 20px;</code>
+			<code>}</code>
+			<code>.menu__item_last {</code>
+			<code>	margin-left: 0;</code>
+			<code>}</code>
+		</pre>
+	</div></section>
+	<section class="slide code-section"><div>
+		<pre class="half">
+			<code>@yellow: #ffc000;</code>
+			<code>.round(@size) {</code>
+			<code>	border-radius: 50%;</code>
+			<code>	width: @size;</code>
+			<code>	height: @size;</code>
+			<code>}</code>
+			<code></code>
+			<code>.block1 {</code>
+			<code>	background: @yellow;</code>
+			<code>	.round(200px)</code>
+			<code>}</code>
+			<code>.block2 {</code>
+			<code>	background: @yellow + 20;</code>
+			<code>	.round(300px)</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>.block1 {</code>
+			<code>	background: #ffc000;</code>
+			<code>	border-radius: 50%;</code>
+			<code>	width: 200px;</code>
+			<code>	height: 200px;</code>
+			<code>}</code>
+			<code>.block2 {</code>
+			<code>	background: #fff214;</code>
+			<code>	border-radius: 50%;</code>
+			<code>	width: 300px;</code>
+			<code>	height: 300px;</code>
+			<code>}</code>
 		</pre>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Even Tables</h2>
-		<table>
-		<tr>
-			<th scope="col">Locavore</th>
-			<th>Umami</th>
-			<th>Helvetica</th>
-			<th>Vegan</th>
-		</tr>
-		<tr>
-			<th scope="row">Fingerstache</th>
-			<td>Kale</td>
-			<td>Chips</td>
-			<td>Keytar</td>
-		</tr>
-		<tr>
-			<th scope="row">Sriracha</th>
-			<td>Gluten-free</td>
-			<td>Ennui</td>
-			<td>Keffiyeh</td>
-		</tr>
-		<tr>
-			<th scope="row">Thundercats</th>
-			<td>Jean</td>
-			<td>Shorts</td>
-			<td>Biodiesel</td>
-		</tr>
-		<tr>
-			<th scope="row">Terry</th>
-			<td>Richardson</td>
-			<td>Swag</td>
-			<td>Blog</td>
-		</tr>
-		</table>
-		<p>It’s good to have information organized.</p>
+		<h2>Системы сборки</h2>
+		Gulp, Grunt, Webpack.
 	</div></section>
-	<section class="slide cover" id="Picture"><div>
-		<h2>Pictures</h2>
-		<img src="pictures/picture.jpg" alt="">
-		<style>
-			#Picture h2 {
-				color:#FFF;
-				}
-		</style>
-	</div></section>
-	<section class="slide shout"><div>
-		<h2>You can even shout this way</h2>
-	</div></section>
+
 	<section class="slide"><div>
-		<h2>Inner Navigation</h2>
-		<ol>
-			<li>Lets you reveal list items one by one</li>
-			<li class="next">To keep some key points</li>
-			<li class="next">In secret from audience</li>
-			<li class="next">But it will work only once</li>
-			<li class="next">Nobody wants to see the same joke twice</li>
-		</ol>
+		<h2>SVG</h2>
+		<p>— Язык разметки масштабируемой векторной графики</p>
+		<ul>
+			<li>хорошая браузерная поддержка (ie9+)</li>
+			<li>маленький вес изображений</li>
+			<li>может встаиваться инлайн</li>
+			<li>может быть стилизован с помощью css</li>
+			<li>поддерживает анимацию</li>
+			<li>существуют библиотеки для работы (raphael.js)</li>
+		</ul>
 	</div></section>
-	<section class="slide shout" id="SeeMore"><div>
-		<h2><img src="pictures/logo.svg" alt=""> <a href="https://github.com/shower/shower">See more on GitHub</a></h2>
-		<style>
-			#Picture h2 {
-				color:#FFF;
-				}
-			#SeeMore h2 {
-				font-size:100px
-				}
-			#SeeMore img {
-				width:0.72em;
-				height:0.72em;
-				}
-		</style>
-	</div></section>
-	<p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
-	<!--
-		To hide progress bar from entire presentation
-		just remove “progress” element.
-		-->
-	<div class="progress"><div></div></div>
 	<script src="node_modules/shower-core/shower.min.js"></script>
-	<!-- Copyright © 2014 Yours Truly, Famous Inc. -->
-	<!-- Photos by John Carey, fiftyfootshadows.net -->
 </body>
 </html>
