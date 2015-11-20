@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-	<title>Shower Presentation Engine</title>
+	<title>Доклад. Frontend.</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=792, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -15,6 +15,12 @@
 			display: inline-block;
 			vertical-align: top;
 		}
+		pre, .small-text {
+			font-size: 14px;
+		}
+		.slide p, .slide pre, .slide ul {
+			margin: 0 0 30px 0;
+		}
 	</style>
 </head>
 <body class="list">
@@ -24,11 +30,9 @@
 	</header>
 	<section class="slide cover" id="Cover"><div>
 		<h2>Доклад. Frontend.</h2>
-		<p>Из чего складывается современная frontend-разработка,<br/> какими знаниям следует обладать.</p>
-		<!--
-			To apply styles to the certain slides
-			set slide ID to get needed elements
-			-->
+		<p>Современная frontend-разработка.</p>
+		<p>Елизавета Каторгина</p>
+		<img src="pictures/dalee-logo.svg" alt="" />
 		<style>
 			#Cover {
 				background-image: url('pictures/cat.jpg');
@@ -48,6 +52,11 @@
 				font-style:italic;
 				font-size:20px;
 				}
+			#Cover img {
+				position: relative;
+				width: 100px;
+				margin: 20px 0 0 0;
+			}
 		</style>
 	</div></section>
 	<section class="slide"><div>
@@ -346,6 +355,18 @@
 		</pre>
 		<div style="position: absolute; top: 50%; right: 300px;"><div class="cir"></div></div>
 	</div></section>
+	<section class="slide"><div>
+		<ul>
+			<li><b>animation-name</b></li>
+			<li><b>animation-duration</b>: time|initial|inherit;</li>
+			<li><b>animation-timing-function</b>: linear|ease|ease-in|ease-out|cubic-bezier(n,n,n,n)|initial|inherit;</li>
+			<li><b>animation-delay</b>: time|initial|inherit;</li>
+			<li><b>animation-iteration-count</b>: number|infinite|initial|inherit;</li>
+			<li><b>animation-direction</b>: normal|reverse|alternate|alternate-reverse|initial|inherit;</li>
+			<li><b>animation-fill-mode</b>: none|forwards|backwards|both|initial|inherit;</li>
+			<li><b>animation-play-state</b>: paused|running|initial|inherit;</li>
+		</ul>
+	</div></section>
 
 	<section class="slide code-section"><div>
 		<pre>
@@ -374,6 +395,156 @@
 		</svg>
 	</div></section>
 
+	<section class="slide"><div>
+		<b>JS</b><br/>
+		<p>JQuery .animate()</p>
+		<pre>
+			<code>$(function() {</code>
+			<code>	$('.jq-anim').on('click', function() {</code>
+			<code>		$(this).animate({left: 200}, 1000, "linear", function() {</code>
+			<code>			$(this).animate({left: 0}, 1000);</code>
+			<code>		});</code>
+			<code>	});</code>
+			<code>})</code>
+		</pre>
+		<div class="jq-anim" style="width: 100px; height: 100px; background: red; position: relative;"></div>
+	</div></section>
+	<section class="slide"><div>
+		<p><b>GSAP(Greensock Animation Platform)</b></p>
+		<ul>
+			<li>TweenMax.from(объект, длительность, значение)</li>
+			<li>TweenMax.to(объект, длительность, значение)</li>
+			<li>TweenMax.fromTo(объект, длительность, значение1, значение2)</li>
+		</ul>
+		<pre>
+			<code>TweenMax.to( $('#bg1'), 2, {css: {background-position: '-300px'}} );</code>
+			<code></code>
+		</pre>
+	</div></section>
+	<section class="slide shout"><div>
+		<h2>Инструменты</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Командная строка.</h2>
+		<ul>
+			<li><b>ssh</b> для подключения к другой машине или серверу</li>
+			<li><b>scp</b> для копирования файлов на другую машину или сервер</li>
+			<li><b>grep</b> для поиска файлов в проекте по строке или шаблону</li>
+			<li><b>find</b> для обнаружения файлов, чьи названия совпадают с данным шаблоном</li>
+			<li><b>git</b> для выполнения хотя бы базовых действий вроде add, commit, status и pull</li>
+			<li><b>npm</b> для установки пакетов Node</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>GIT.</h2>
+		<ul class="small-text">
+			<li>git clone</li>
+			<li>git status</li>
+			<li>git checkout</li>
+			<li>git add</li>
+			<li>git commit</li>
+			<li>git pull</li>
+			<li>git push</li>
+			<li>git merge</li>
+			<li>git rebase</li>
+		</ul>
+		<p>GitHub</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Браузерные инструменты</h2>
+		<ul>
+			<li>просматривать весь отрендеренный DOM и CSS свойства, применяемые к его элементам</li>
+			<li>получить доступ к консоли JavaScript</li>
+		</ul>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Задачи и проблемы</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Кроссбраузерность.</h2>
+		Основные движки:
+		<ul>
+			<li>WebKit (используется Safari, вырос из KHTML)</li>
+			<li>Blink (Chrome, Opera и 300 форков Chromium)</li>
+			<li>Gecko (Firefox)</li>
+			<li>IE</li>
+		</ul>
+
+	</div></section>
+
+	<section class="slide"><div>
+		Аутсайдеры:
+		<ul>
+			<li>Старые IE</li>
+			<li>Старая Opera</li>
+		</ul>
+		Opera Mini
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Адаптивность.</h2>
+		<p>Утройства с разным рамером экранов и dpi - десктопы, планшеты, телефоны.</p>
+		<p>В css реализуется через Media Queries.</p>
+		<pre>
+			<code>@media screen and (max-width: 480px) {</code>
+			<code>}</code>
+		</pre>
+		<p>Ретина.<br/>
+		Responsive design</p>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Работа в команде</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<ul>
+			<li>общаться</li>
+			<li>спорить</li>
+			<li>обращаться за помощью</li>
+			<li>помогать друг-другу</li>
+			<li>не бояться сделать работу за другого</li>
+			<li>не бояться отказывать и не делать лишнего</li>
+			<li>не бояться вредрять новые технологические решения</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Развиваться!</h2>
+		<ul>
+			<li>cамообразование</li>
+			<li>проф. кнференции</li>
+			<li>проф. сообщества</li>
+			<li>Twitter, GitHub, CodPen</li>
+			<li>ресурсы по фронтенду</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<p><b>Ссылки</b></p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Спасибо за внимание!</h2>
+	</div></section>
+
+	<div class="progress"><div></div></div>
+
 	<script src="node_modules/shower-core/shower.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('.jq-anim').on('click', function() {
+				$(this).animate({left: 200}, 1000, "linear", function() {
+					$(this).animate({left: 0}, 1000);
+				});
+			});
+		})
+	</script>
 </body>
 </html>
