@@ -21,6 +21,9 @@
 		.slide p, .slide pre, .slide ul {
 			margin: 0 0 30px 0;
 		}
+		.nomargin {
+			margin: 0!important;
+		}
 	</style>
 </head>
 <body class="list">
@@ -29,7 +32,7 @@
 		<p>Елизавета Каторгина.</p>
 	</header>
 	<section class="slide cover" id="Cover"><div>
-		<h2>Современная frontend-разработка.</h2>
+		<h2>Современная<br/> frontend-разработка.</h2>
 		<p>Елизавета Каторгина</p>
 		<img src="pictures/dalee-logo.svg" alt="" />
 		<style>
@@ -100,7 +103,7 @@
 		<h2>Шаблонизаторы.</h2>
 		Решают такие проблемы:
 		<ul>
-			<li>разделение кода на части</li>
+			<li>декомпозиция (разделение кода на части)</li>
 			<li>повторное использование кода</li>
 			<li>получение, обработка и использование данных с сервера</li>
 			<li>автоматизация и ускорение написания кода</li>
@@ -214,6 +217,8 @@
 			<li>постпроцссоры (autoprefixer, csscomb)</li>
 			<li>PostCss (плагины)</li>
 		</ul>
+		<p class="small-text"><b>PostCss</b> берет CSS и превращает в вид данных, которые можно изменять с помощью Яваскрипт. Основанные на Яваскрипт плагины, позволяют изменять код. PostCss сам по себе ничего не изменяет, он всего лишь прокладывает путь для плагинов, которые делают изменения и траснформации для которого они созданы.</p>
+		<p class="small-text">Плагины PostCss, могут вести себя как препроцессоры: могут оптимизировать и добавлять префиксы в код, могут добавлять синтаксис из будущих спецификаций, могут выполнять проверку, могут производить переменные и логику, можно создавать сетки...этот список очень длинный и разнообразный.</p>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Препроцессоры</h2>
@@ -347,7 +352,7 @@
 			<li>может встаиваться инлайн</li>
 			<li>может быть стилизован с помощью css</li>
 			<li>поддерживает анимацию</li>
-			<li>существуют библиотеки для работы (raphael.js)</li>
+			<li>существуют библиотеки для работы (Raphael.js, Snap.svg)</li>
 		</ul>
 	</div></section>
 	<section class="slide code-section"><div>
@@ -383,7 +388,7 @@
 	</div></section>
 	<section class="slide code-section"><div>
 		<style type="text/css">
-			.rect {
+			.morph {
 			  width: 100px;
 			  height: 100px;
 			  background: black;
@@ -395,17 +400,17 @@
 			  opacity: 1;
 			  border-radius: 0;
 			}
-			.rect:hover {
+			.morph:hover {
 			  border-radius: 50%;
 			  background: red;
 			  opacity: 0.5; 
 			}
 		</style>
 		<pre>
-			<code>&lt;div class="rect"&gt;&lt;/div&gt;</code>
+			<code>&lt;div class="morph"&gt;&lt;/div&gt;</code>
 		</pre>
 		<pre>
-			<code>.rect {</code>
+			<code>.morph {</code>
 			<code>	width: 100px;</code>
 			<code>	height: 100px;</code>
 			<code>	background: black;</code>
@@ -413,13 +418,13 @@
 			<code>	opacity: 1;</code>
 			<code>	transition: border-radius 0.5s linear, background 0.5s 0.5s linear, opacity 0.5s 1s ease;</code>
 			<code>}</code>
-			<code>.rect:hover {</code>
+			<code>.morph:hover {</code>
 			<code>	border-radius: 50%;</code>
 			<code>	background: red;</code>
-			<code>	opacity: 1;</code>
+			<code>	opacity: 0.5;</code>
 			<code>}</code>
 		</pre>
-		<div class="rect"></div>
+		<div class="morph"></div>
 	</div></section>
 	<section class="slide"><div>
 		<ul>
@@ -603,7 +608,7 @@
 		<h2>Браузерные инструменты</h2>
 		<ul>
 			<li>просматривать весь отрендеренный DOM и CSS свойства, применяемые к его элементам</li>
-			<li>получить доступ к консоли JavaScript</li>
+			<li>отладка JavaScript</li>
 		</ul>
 	</div></section>
 
@@ -620,17 +625,40 @@
 			<li>Gecko (Firefox)</li>
 			<li>IE</li>
 		</ul>
-
+	</div></section>
+	<section class="slide"><div>
+		<p><b>Префиксы</b></p>
+		<pre>
+			<code>.selector {</code>
+			<code>	display: -webkit-flex;</code>
+			<code>	display: -ms-flexbox;</code>
+			<code>	display: flex;</code>
+			<code>	-webkit-justify-content: space-between;</code>
+			<code>	-ms-flex-pack: justify;</code>
+			<code>	justify-content: space-between;</code>
+			<code>}</code>
+		</pre>
 	</div></section>
 
 	<section class="slide"><div>
 		<b>Аутсайдеры:</b>
 		<ul>
-			<li>Старые IE</li>
-			<li>Старая Opera</li>
+			<li>старые IE</li>
 			<li>Opera Mini</li>
 		</ul>
-		<b>Modernizr.js</b>
+		<b>Условные комментарии</b>
+		<pre>
+			<code>&lt;!--[if lte IE 9]&gt;</code>
+			<code>	&lt;link href="ie.css" type="text/css" rel="stylesheet"&gt;</code>
+			<code>&lt;![endif]--&gt;</code>
+			<code>&lt;!--[if IE 8]&gt;</code>
+			<code>	&lt;link href="ie8.css" type="text/css" rel="stylesheet"&gt;</code>
+			<code>&lt;![endif]--&gt;</code>
+		</pre>
+		<p>Graceful degradation, Progressive Enhancement.</p>
+	</div></section>
+	<section class="slide"><div>
+		<b>Modernizr.js (<a href="https://modernizr.com/">https://modernizr.com/</a>)</b>
 		<pre>
 			<code>// Google Chrome 46.0</code>
 			<code>&lt;html class="no-touch cssanimations csstransforms csstransforms3d csstransitions mediaqueries"&gt;</code>
@@ -676,19 +704,28 @@
 	<section class="slide"><div>
 		<h2>Развиваться!</h2>
 		<ul>
-			<li>cамообразование</li>
-			<li>проф. кнференции</li>
+			<li>проф. коференции и открытые встречи (Web Standards Days)</li>
 			<li>проф. сообщества</li>
-			<li>Twitter, GitHub, CodPen</li>
-			<li>ресурсы по фронтенду</li>
+			<li>Twitter, GitHub, CodPen (@cssunderhood, @jsunderhood, @cssliveru)</li>
+			<li>cамообразование (ресурсы по фронтенду)</li>
 		</ul>
 	</div></section>
 
 	<section class="slide"><div>
 		<p><b>Ссылки</b></p>
+		Frontender Magazine — <a href="http://frontender.info/">http://frontender.info/</a><br/>
+		Веб-стандарты — <a href="http://web-standards.ru/">http://web-standards.ru/</a><br/>
+		CSS-LIVE — <a href="http://css-live.ru/">http://css-live.ru/</a><br/>
+		CodePen — <a href="http://codepen.io/">http://codepen.io/</a><br/>
+		Coderops — <a href="http://tympanus.net/codrops/">http://tympanus.net/codrops/</a><br/>
+		Google Developers — <a href="https://developers.google.com/web/fundamentals/">https://developers.google.com/web/fundamentals/</a>
+		cssunderhood.ru (Коллективный твиттер-аккаунт для верстальщиков) — <a href="https://cssunderhood.ru/">https://cssunderhood.ru/</a>
 	</div></section>
 
 	<section class="slide"><div>
+		<p>Эта презентация создана с помощью <b>Shower HTML presentation engine</b> Вадима Макеева — <a href="https://github.com/shower/shower">https://github.com/shower/shower</a></p>
+		<blockquote>Мир фронтенда — бегун на костылях в принципе, но бегун быстрый.</blockquote>
+		<br/>
 		<h2>Спасибо за внимание!</h2>
 	</div></section>
 
