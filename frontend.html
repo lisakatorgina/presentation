@@ -29,8 +29,7 @@
 		<p>Елизавета Каторгина.</p>
 	</header>
 	<section class="slide cover" id="Cover"><div>
-		<h2>Доклад. Frontend.</h2>
-		<p>Современная frontend-разработка.</p>
+		<h2>Современная frontend-разработка.</h2>
 		<p>Елизавета Каторгина</p>
 		<img src="pictures/dalee-logo.svg" alt="" />
 		<style>
@@ -60,23 +59,24 @@
 		</style>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Что было раньше.</h2>
-		<p>Client-side:</p>
+		<h2>Client-side</h2>
+		<p>- то, что понимает браузер</p>
 		<ul>
 			<li class="next">HTML</li>
 			<li class="next">CSS</li>
 			<li class="next">JavaScript</li>
+			<li class="next">Изображения</li>
 		</ul>
-		<p class="next">Все это есть и сейчас!</p>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Что же изменилось.</h2>
+		<h2>Frontend</h2>
+		<p>- совокупность всего того, что мы делаем и чем при этом пользуется, для того, чтобы браузер нас понимал.</p>
 		<ul>
-			<li class="next">Новые технологии</li>
-			<li class="next">Новые инструменты</li>
-			<li class="next">Новые возможности => новые задачи</li>
+			<li class="next">технологии</li>
+			<li class="next">инструменты</li>
+			<li class="next">задачи</li>
+			<li class="next">возможности</li>
 		</ul>
-		<p class="next">Без их знания невозможно эффективно работать.</p>
 	</div></section>
 	<section class="slide shout"><div>
 		<h2>Технологии</h2>
@@ -85,8 +85,8 @@
 		<h2>JavaScript</h2>
 		<p>— прототипно-ориентированный сценарный язык программирования. Является реализацией языка ECMAScript. JS поддерживаемый сейчас большинством браузеров, работает на ES5.</p>
 		<ul>
-			<li>Транслирумые языки (CoffeScript, Babel)</li>
-			<li>Плагины и библиотеки (JQuery)</li>
+			<li>транслирумые языки (CoffeScript, Babel)</li>
+			<li>плагины и библиотеки (JQuery)</li>
 			<li>ECMAScript 6</li>
 		</ul>
 	</div></section>
@@ -98,11 +98,59 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>Шаблонизаторы.</h2>
-		<p>Никто уже не пишет HTML руками.</p>
+		Решают такие проблемы:
+		<ul>
+			<li>разделение кода на части</li>
+			<li>повторное использование кода</li>
+			<li>получение, обработка и использование данных с сервера</li>
+			<li>автоматизация и ускорение написания кода</li>
+		</ul>
 		<ul>
 			<li>серверные</li>
 			<li>клиентские</li>
 		</ul>
+	</div></section>
+	<section class="slide code-section"><div>
+		<b>PHP</b>
+		<pre>
+			<code>&lt;html&gt;</code>
+			<code>	&lt;?php include 'templates/head.php' ?&gt;</code>
+			<code>	&lt;body&gt;</code>
+			<code>		&lt;?php include 'templates/header.php' ?&gt;</code>
+			<code>		&lt;?php include 'templates/content.php' ?&gt;</code>
+			<code>		&lt;?php include 'templates/footer.php' ?&gt;</code>
+			<code>	&lt;/body&gt;</code>
+			<code>&lt;/html&gt;</code>
+		</pre>
+		<b>Smarty</b>
+		<pre>
+			<code>{if $isRoot}&lt;h1&gt;Главная страница&lt;/h1&gt;{/if}</code>
+			<code>&lt;ul&gt;</code>
+			<code>	{foreach from=$list item=item}</code>
+			<code>		&lt;li&gt;{$item}&lt;/li&gt;</code>
+			<code>	{/foreach}</code>
+			<code>&lt;/ul&gt;</code>
+		</pre>
+	</div></section>
+	<section class="slide code-section"><div>
+		<pre>
+			<code>{</code>
+			<code>	"name": "Lisa",</code>
+			<code>	"profession": "frontend-developer",</code>
+			<code>	"city": "Moscow"</code>
+			<code>}</code>
+		</pre>
+		<b>Mustache</b>
+		<pre>
+			<code>&lt;dl&gt;</code>
+			<code>	&lt;dt&gt;Имф&lt;/dt&gt;</code>
+			<code>	&lt;dd&gt;{{name}}&lt;/dd&gt;</code>
+			<code>	&lt;dt&gt;Профессия&lt;/dt&gt;</code>
+			<code>	&lt;dd&gt;{{profession}}&lt;/dd&gt;</code>
+			<code>	&lt;dt&gt;Город&lt;/dt&gt;</code>
+			<code>	&lt;dd&gt;{{city}}&lt;/dd&gt;</code>
+			<code>&lt;/dl&gt;</code>
+		</pre>
 	</div></section>
 	<section class="slide code-section"><div>
 		<b>Haml</b>
@@ -125,30 +173,45 @@
 		</pre>
 	</div></section>
 	<section class="slide code-section"><div>
-		<pre>
-			<code>{</code>
-			<code>	"name": "Lisa",</code>
-			<code>	"profession": "frontend-developer",</code>
-			<code>	"city": "Moscow"</code>
-			<code>}</code>
+		<b>Jade + bemto</b><br/>
+		<pre class="half">
+			<code>+b.b-cat</code>
+			<code>	+e.neck</code>
+			<code>	+e.body</code>
+			<code>	+e.arm._left</code>
+			<code>	+e.arm._right</code>
+			<code>	+e.leg</code>
+			<code>	+e.tail</code>
+			<code>	+e.butt</code>
+			<code>	+e.ear._left</code>
+			<code>	+e.ear._right</code>
+			<code>	+e.head</code>
+			<code>		+e.eye._left</code>
+			<code>		+e.eye._right</code>
 		</pre>
-		<b>mustache</b>
-		<pre>
-			<code>&lt;dl&gt;</code>
-			<code>	&lt;dt&gt;Имф&lt;/dt&gt;</code>
-			<code>	&lt;dd&gt;{{name}}&lt;/dd&gt;</code>
-			<code>	&lt;dt&gt;Профессия&lt;/dt&gt;</code>
-			<code>	&lt;dd&gt;{{profession}}&lt;/dd&gt;</code>
-			<code>	&lt;dt&gt;Город&lt;/dt&gt;</code>
-			<code>	&lt;dd&gt;{{city}}&lt;/dd&gt;</code>
-			<code>&lt;/dl&gt;</code>
+		<pre class="half">
+			<code>&lt;div class="b-cat"&gt;</code>
+			<code>  &lt;div class="b-cat__neck"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__body"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__arm b-cat__arm_left"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__arm b-cat__arm_right"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__leg"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__tail"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__butt"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__ear b-cat__ear_left"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__ear b-cat__ear_right"&gt;&lt;/div&gt;</code>
+			<code>  &lt;div class="b-cat__head"&gt;</code>
+			<code>    &lt;div class="b-cat__eye b-cat__eye_left"&gt;&lt;/div&gt;</code>
+			<code>    &lt;div class="b-cat__eye b-cat__eye_right"&gt;&lt;/div&gt;</code>
+			<code>  &lt;/div&gt;</code>
+			<code>&lt;/div&gt;</code>
 		</pre>
 	</div></section>
 	<section class="slide"><div>
-		<h2>CSS</h2>
+		<h2>Работа с CSS</h2>
 		<ul>
-			<li>Препроцессоры (less, sass, stylus)</li>
-			<li>Постпроцссоры (autoprefixer, csscomb)</li>
+			<li>препроцессоры (less, sass, stylus)</li>
+			<li>постпроцссоры (autoprefixer, csscomb)</li>
 			<li>PostCss (плагины)</li>
 		</ul>
 	</div></section>
@@ -251,9 +314,24 @@
 			<code>}</code>
 		</pre>
 	</div></section>
+	<section class="slide code-section"><div>
+		<pre>
+			<code>.loop (@­index) when (@­index > 0) {</code>
+			<code>  .myclass {</code>
+			<code>    z-index: @­index;</code>
+			<code>  }</code>
+			<code>  // Call itself</code>
+			<code>  .loopingClass(@­index - 1);</code>
+			<code>}</code>
+			<code>// Stop loop</code>
+			<code>.loopingClass (0) {}</code>
+			<code>// Outputs stuff</code>
+			<code>.loopingClass (10);</code>
+		</pre>
+	</div></section>
 	<section class="slide"><div>
 		<h2>Системы сборки</h2>
-		Gulp, Grunt, Webpack.
+		<b>Gulp, Grunt, Webpack.</b>
 		<ul>
 			<li>работают на node.js, ставятся с помщью npm</li>
 			<li>компилируют и обрабатывают css, js, шаблоны, графику</li>
@@ -297,7 +375,7 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>Анимация.</h2>
-		css-анимация
+		<b>CSS</b>
 		<ul>
 			<li>transition</li>
 			<li>animation @keyframes</li>
@@ -310,14 +388,17 @@
 			  height: 100px;
 			  background: black;
 			  border-radius: 0;
-			  transition: all 0.2s linear;
+			  transition: border-radius 0.5s linear, background 0.5s 0.5s linear, opacity 0.5s 1s ease;
 			  position: absolute;
-			  top: 50%;
+			  top: 70%;
 			  right: 300px;
+			  opacity: 1;
+			  border-radius: 0;
 			}
 			.rect:hover {
 			  border-radius: 50%;
 			  background: red;
+			  opacity: 0.5; 
 			}
 		</style>
 		<pre>
@@ -325,19 +406,28 @@
 		</pre>
 		<pre>
 			<code>.rect {</code>
-			<code>  width: 100px;</code>
-			<code>  height: 100px;</code>
-			<code>  background: black;</code>
-			<code>  border-radius: 0;</code>
-			<code>  transition: all 0.2s linear;</code>
+			<code>	width: 100px;</code>
+			<code>	height: 100px;</code>
+			<code>	background: black;</code>
+			<code>	border-radius: 0;</code>
+			<code>	opacity: 1;</code>
+			<code>	transition: border-radius 0.5s linear, background 0.5s 0.5s linear, opacity 0.5s 1s ease;</code>
 			<code>}</code>
 			<code>.rect:hover {</code>
-			<code>  border-radius: 50%;</code>
-			<code>  background: red;</code>
-			<code>  left: 200px;</code>
+			<code>	border-radius: 50%;</code>
+			<code>	background: red;</code>
+			<code>	opacity: 1;</code>
 			<code>}</code>
 		</pre>
 		<div class="rect"></div>
+	</div></section>
+	<section class="slide"><div>
+		<ul>
+			<li>transition-property</li>
+			<li>transition-duration</li>
+			<li>transition-timing-function</li>
+			<li>transition-delay</li>
+		</ul>
 	</div></section>
 	<section class="slide code-section"><div>
 		<style type="text/css">
@@ -393,13 +483,15 @@
 			<code>&lt;svg width="500" height="100"&gt;</code>
 			<code>&lt;circle id="orange-circle" r="30" cx="50" cy="50" fill="orange" /&gt;</code>
 			<code>&lt;animate</code>
-			<code>        xlink:href="#orange-circle"</code>
-			<code>        attributeName="cx"</code>
-			<code>        from="50"</code>
-			<code>        to="450"</code>
-			<code>        dur="1s"</code>
-			<code>        begin="click"</code>
-			<code>        fill="freeze" /&gt;</code>
+			<code>xlink:href="#orange-circle"</code>
+			<code>	attributeName="cx"</code>
+			<code>	from="50"</code>
+			<code>	to="450"</code>
+			<code>	dur="1s"</code>
+			<code>	begin="click + 1s"</code>
+			<code>	fill="remove"</code>
+			<code>	repeatCount="3"</code>
+			<code>/&gt;</code>
 			<code>&lt;/svg&gt;</code>
 		</pre>
 		<svg width="500" height="100">
@@ -410,8 +502,50 @@
 				from="50"
 				to="450"
 				dur="1s"
-				begin="click"
-				fill="freeze" />
+				begin="click + 1s"
+				fill="remove"
+				repeatCount="3" />
+		</svg>
+	</div></section>
+
+	<section class="slide code-section"><div>
+		<pre>
+			<code>&lt;svg width="500" height="350" viewBox="0 0 500 350" style="position: absolute; bottom: 0; right: 0"&gt;</code>
+			<code>  &lt;path id="motionPath" fill="none" stroke="#000000" stroke-miterlimit="10" d="M202.4,58.3c-13.8,0.1-33.3,0.4-44.8,9.2
+				c-14,10.7-26.2,29.2-31.9,45.6c-7.8,22.2-13.5,48-3.5,70.2c12.8,28.2,47.1,43.6,68.8,63.6c19.6,18.1,43.4,26.1,69.5,29.4
+				c21.7,2.7,43.6,3.3,65.4,4.7c19.4,1.3,33.9-7.7,51.2-15.3c24.4-10.7,38.2-44,40.9-68.9c1.8-16.7,3.4-34.9-10.3-46.5
+				c-9.5-8-22.6-8.1-33.2-14.1c-13.7-7.7-27.4-17.2-39.7-26.8c-5.4-4.2-10.4-8.8-15.8-12.9c-4.5-3.5-8.1-8.3-13.2-11
+				c-6.2-3.3-14.3-5.4-20.9-8.2c-5-2.1-9.5-5.2-14.3-7.6c-6.5-3.3-12.1-7.4-19.3-8.9c-6-1.2-12.4-1.3-18.6-1.5
+				C222.5,59,212.5,57.8,202.4,58.3"/&gt;</code>			      
+			<code>  &lt;circle id="circle" r="10" cx="0" cy="0" fill="tomato" /&gt;</code>			       
+			<code>  &lt;animateMotion 
+			    xlink:href="#circle"
+			    dur="5s"
+			    begin="0s"
+			    fill="freeze"
+			    repeatCount="indefinite"&gt;</code>
+			<code>    &lt;mpath xlink:href="#motionPath" /&gt;</code>
+			<code>  &lt;/animateMotion&gt;</code>
+			<code>&lt;/svg&gt;</code>
+		</pre>
+		<svg width="500" height="350" viewBox="0 0 500 350" style="position: absolute; bottom: 0; right: 0">
+		  <path id="motionPath" fill="none" stroke="#000000" stroke-miterlimit="10" d="M202.4,58.3c-13.8,0.1-33.3,0.4-44.8,9.2
+		    c-14,10.7-26.2,29.2-31.9,45.6c-7.8,22.2-13.5,48-3.5,70.2c12.8,28.2,47.1,43.6,68.8,63.6c19.6,18.1,43.4,26.1,69.5,29.4
+		    c21.7,2.7,43.6,3.3,65.4,4.7c19.4,1.3,33.9-7.7,51.2-15.3c24.4-10.7,38.2-44,40.9-68.9c1.8-16.7,3.4-34.9-10.3-46.5
+		    c-9.5-8-22.6-8.1-33.2-14.1c-13.7-7.7-27.4-17.2-39.7-26.8c-5.4-4.2-10.4-8.8-15.8-12.9c-4.5-3.5-8.1-8.3-13.2-11
+		    c-6.2-3.3-14.3-5.4-20.9-8.2c-5-2.1-9.5-5.2-14.3-7.6c-6.5-3.3-12.1-7.4-19.3-8.9c-6-1.2-12.4-1.3-18.6-1.5
+		    C222.5,59,212.5,57.8,202.4,58.3"/>
+		  
+		  <circle id="circle" r="10" cx="0" cy="0" fill="tomato" />
+		   
+		  <animateMotion 
+		           xlink:href="#circle"
+		           dur="5s"
+		           begin="0s"
+		           fill="freeze"
+		           repeatCount="indefinite">
+		    <mpath xlink:href="#motionPath" />
+		  </animateMotion>
 		</svg>
 	</div></section>
 
@@ -458,18 +592,10 @@
 	</div></section>
 
 	<section class="slide"><div>
-		<h2>GIT.</h2>
-		<ul class="small-text">
-			<li>git clone</li>
-			<li>git status</li>
-			<li>git checkout</li>
-			<li>git add</li>
-			<li>git commit</li>
-			<li>git pull</li>
-			<li>git push</li>
-			<li>git merge</li>
-			<li>git rebase</li>
-		</ul>
+		<h2>GIT</h2>
+		<p>— распределённая система управления версиями</p>
+		<p>Команды, которых часто достаточно:<br/>
+		clone, status, checkout, add, commit, pull, push, merge, rebase</p>
 		<p>GitHub</p>
 	</div></section>
 
@@ -487,7 +613,7 @@
 
 	<section class="slide"><div>
 		<h2>Кроссбраузерность.</h2>
-		Основные движки:
+		<b>Основные движки:</b>
 		<ul>
 			<li>WebKit (используется Safari, вырос из KHTML)</li>
 			<li>Blink (Chrome, Opera и 300 форков Chromium)</li>
@@ -498,24 +624,37 @@
 	</div></section>
 
 	<section class="slide"><div>
-		Аутсайдеры:
+		<b>Аутсайдеры:</b>
 		<ul>
 			<li>Старые IE</li>
 			<li>Старая Opera</li>
+			<li>Opera Mini</li>
 		</ul>
-		Opera Mini
+		<b>Modernizr.js</b>
+		<pre>
+			<code>// Google Chrome 46.0</code>
+			<code>&lt;html class="no-touch cssanimations csstransforms csstransforms3d csstransitions mediaqueries"&gt;</code>
+		</pre>
+		<pre>
+			<code>// IE 8</code>
+			<code>&lt;html class="no-touch no-cssanimations no-csstransforms no-csstransforms3d no-csstransitions 
+			no-mediaqueries"&gt;</code>
+		</pre>
 	</div></section>
 
 	<section class="slide"><div>
 		<h2>Адаптивность.</h2>
-		<p>Утройства с разным рамером экранов и dpi - десктопы, планшеты, телефоны.</p>
-		<p>В css реализуется через Media Queries.</p>
+		<p>Утройства с разным рамером экранов и dpi - десктопы, планшеты, телефоны.<br/>
+		В css реализуется через Media Queries.</p>
 		<pre>
-			<code>@media screen and (max-width: 480px) {</code>
+			<code>@media screen and (max-width: 768px) and (max-device-width: 1024px) {</code>
+			<code>	/* tablet styles */</code>
+			<code>}</code>
+
+			<code>@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { </code>
+			<code>    /* retina styles */</code>
 			<code>}</code>
 		</pre>
-		<p>Ретина.<br/>
-		Responsive design</p>
 	</div></section>
 
 	<section class="slide shout"><div>
