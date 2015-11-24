@@ -24,6 +24,17 @@
 		.nomargin {
 			margin: 0!important;
 		}
+		pre.shell {
+			background: #000;
+			color: #fff;
+			padding: 10px;
+		}
+		pre.shell code {
+			color: #fff;
+		}
+		pre.shell code:before {
+			display: none;
+		}
 	</style>
 </head>
 <body class="list">
@@ -103,7 +114,7 @@
 		<h2>Шаблонизаторы.</h2>
 		Решают такие проблемы:
 		<ul>
-			<li>декомпозиция (разделение кода на части)</li>
+			<li>декомпозиция и систематизация (разделение кода на части)</li>
 			<li>повторное использование кода</li>
 			<li>получение, обработка и использование данных с сервера</li>
 			<li>автоматизация и ускорение написания кода</li>
@@ -215,7 +226,7 @@
 		<ul>
 			<li>препроцессоры (less, sass, stylus)</li>
 			<li>постпроцссоры (autoprefixer, csscomb)</li>
-			<li>PostCss (плагины)</li>
+			<li>PostCss</li>
 		</ul>
 		<p class="small-text"><b>PostCss</b> берет CSS и превращает в вид данных, которые можно изменять с помощью Яваскрипт. Основанные на Яваскрипт плагины, позволяют изменять код. PostCss сам по себе ничего не изменяет, он всего лишь прокладывает путь для плагинов, которые делают изменения и траснформации для которого они созданы.</p>
 		<p class="small-text">Плагины PostCss, могут вести себя как препроцессоры: могут оптимизировать и добавлять префиксы в код, могут добавлять синтаксис из будущих спецификаций, могут выполнять проверку, могут производить переменные и логику, можно создавать сетки...этот список очень длинный и разнообразный.</p>
@@ -289,6 +300,7 @@
 	<section class="slide code-section"><div>
 		<pre class="half">
 			<code>@yellow: #ffc000;</code>
+			<code>@size: 200px;</code>
 			<code>.round(@size) {</code>
 			<code>	border-radius: 50%;</code>
 			<code>	width: @size;</code>
@@ -297,11 +309,11 @@
 			<code></code>
 			<code>.block1 {</code>
 			<code>	background: @yellow;</code>
-			<code>	.round(200px)</code>
+			<code>	.round(@size)</code>
 			<code>}</code>
 			<code>.block2 {</code>
 			<code>	background: @yellow + 20;</code>
-			<code>	.round(300px)</code>
+			<code>	.round(@size*2)</code>
 			<code>}</code>
 		</pre>
 		<pre class="half">
@@ -314,8 +326,8 @@
 			<code>.block2 {</code>
 			<code>	background: #fff214;</code>
 			<code>	border-radius: 50%;</code>
-			<code>	width: 300px;</code>
-			<code>	height: 300px;</code>
+			<code>	width: 400px;</code>
+			<code>	height: 400px;</code>
 			<code>}</code>
 		</pre>
 	</div></section>
@@ -340,21 +352,51 @@
 		<ul>
 			<li>работают на node.js, ставятся с помщью npm</li>
 			<li>компилируют и обрабатывают css, js, шаблоны, графику</li>
+			<li>расширяемы плагинами</li>
+			<p>gulp-less, gulp-autoprefixer, gulp-concat</p>
+			Homebrew - <a href="http://brew.sh/">http://brew.sh/</a>
+			<pre class="shell">
+				<code>$ brew install node</code>
+				<code>$ npm install gulp</code>
+			</pre>
 		</ul>
+	</div></section>
+	<section class="slide"><div>
+		<pre class="shell">
+			<code>$ npm install gulp-less</code>
+		</pre>
+		gulpfile.js
+		<pre>
+			<code>var gulp = require('gulp');</code>
+			<code>var less = require('gulp-less');</code>
+			<code>var path = require('path');</code>
+			<code>gulp.task('less', function () {</code>
+			<code>return gulp.src('./css/blocks/**/*.less')</code>
+			<code>	.pipe(less({</code>
+			<code>  		paths: [ path.join(__dirname, 'less', 'includes') ]</code>
+			<code>	}))</code>
+			<code>	.pipe(gulp.dest('./css'));</code>
+			<code>});</code>
+		</pre>
+		<pre class="shell">
+			<code>$ gulp less</code>
+		</pre>
 	</div></section>
 
 	<section class="slide"><div>
 		<h2>SVG</h2>
 		— Язык разметки масштабируемой векторной графики
 		<ul>
-			<li>хорошая браузерная поддержка (ie9+)</li>
-			<li>маленький вес изображений</li>
-			<li>может встаиваться инлайн</li>
-			<li>может быть стилизован с помощью css</li>
-			<li>поддерживает анимацию</li>
+			<li>встраивается инлайн, <img> и background-image</li>
+			<li>может быть стилизован и анимирован с помощью css</li>
+			<li>поддерживает анимацию (декларативну и js)</li>
+			<li>решает проблему с масштабированием графики под retina-дисплеи</li>
+			<li>мало весит по сравнению с растровыми форматами</li>
 			<li>существуют библиотеки для работы (Raphael.js, Snap.svg)</li>
+			<li>хорошая браузерная поддержка (ie9+)</li>
 		</ul>
 	</div></section>
+
 	<section class="slide code-section"><div>
 		<b>html</b>
 		<pre>
@@ -445,9 +487,9 @@
 			  -webkit-animation: move 3s infinite;
 			}
 			@-webkit-keyframes move {
-			  0% {left:0;}
-			  50% {left: 200px;}
-			  100% {left: 0;}
+			  0% {left:0;transform: scale(1);}
+			  50% {left: 200px;transform: scale(0);}
+			  100% {left: 0;transform: scale(1);}
 			}
 		</style>
 		<pre>
@@ -463,9 +505,9 @@
 			<code>  -webkit-animation: move 3s infinite;</code>
 			<code>}</code>
 			<code>@-webkit-keyframes move {</code>
-			<code>  0% {left:0;}</code>
-			<code>  50% {left: 200px;}</code>
-			<code>  100% {left: 0;}</code>
+			<code>  0% {left:0; transform: scale(1)}</code>
+			<code>  50% {left: 200px; transform: scale(0)}</code>
+			<code>  100% {left: 0; transform: scale(1)}</code>
 			<code>}</code>
 		</pre>
 		<div style="position: absolute; top: 50%; right: 300px;"><div class="cir"></div></div>
@@ -473,13 +515,13 @@
 	<section class="slide"><div>
 		<ul>
 			<li><b>animation-name</b></li>
-			<li><b>animation-duration</b>: time|initial|inherit;</li>
-			<li><b>animation-timing-function</b>: linear|ease|ease-in|ease-out|cubic-bezier(n,n,n,n)|initial|inherit;</li>
-			<li><b>animation-delay</b>: time|initial|inherit;</li>
-			<li><b>animation-iteration-count</b>: number|infinite|initial|inherit;</li>
-			<li><b>animation-direction</b>: normal|reverse|alternate|alternate-reverse|initial|inherit;</li>
-			<li><b>animation-fill-mode</b>: none|forwards|backwards|both|initial|inherit;</li>
-			<li><b>animation-play-state</b>: paused|running|initial|inherit;</li>
+			<li><b>animation-duration</b>: time</li>
+			<li><b>animation-timing-function</b>: linear|ease|ease-in|ease-out|cubic-bezier(n,n,n,n)</li>
+			<li><b>animation-delay</b>: time</li>
+			<li><b>animation-iteration-count</b>: number|infinite</li>
+			<li><b>animation-direction</b>: normal|reverse|alternate|alternate-reverse</li>
+			<li><b>animation-fill-mode</b>: none|forwards|backwards|both</li>
+			<li><b>animation-play-state</b>: paused|running</li>
 		</ul>
 	</div></section>
 
@@ -514,32 +556,27 @@
 	</div></section>
 
 	<section class="slide code-section"><div>
-		<pre>
-			<code>&lt;svg width="500" height="350" viewBox="0 0 500 350" style="position: absolute; bottom: 0; right: 0"&gt;</code>
-			<code>  &lt;path id="motionPath" fill="none" stroke="#000000" stroke-miterlimit="10" d="M202.4,58.3c-13.8,0.1-33.3,0.4-44.8,9.2
-				c-14,10.7-26.2,29.2-31.9,45.6c-7.8,22.2-13.5,48-3.5,70.2c12.8,28.2,47.1,43.6,68.8,63.6c19.6,18.1,43.4,26.1,69.5,29.4
-				c21.7,2.7,43.6,3.3,65.4,4.7c19.4,1.3,33.9-7.7,51.2-15.3c24.4-10.7,38.2-44,40.9-68.9c1.8-16.7,3.4-34.9-10.3-46.5
-				c-9.5-8-22.6-8.1-33.2-14.1c-13.7-7.7-27.4-17.2-39.7-26.8c-5.4-4.2-10.4-8.8-15.8-12.9c-4.5-3.5-8.1-8.3-13.2-11
-				c-6.2-3.3-14.3-5.4-20.9-8.2c-5-2.1-9.5-5.2-14.3-7.6c-6.5-3.3-12.1-7.4-19.3-8.9c-6-1.2-12.4-1.3-18.6-1.5
-				C222.5,59,212.5,57.8,202.4,58.3"/&gt;</code>			      
-			<code>  &lt;circle id="circle" r="10" cx="0" cy="0" fill="tomato" /&gt;</code>			       
-			<code>  &lt;animateMotion 
-			    xlink:href="#circle"
-			    dur="5s"
-			    begin="0s"
-			    fill="freeze"
-			    repeatCount="indefinite"&gt;</code>
-			<code>    &lt;mpath xlink:href="#motionPath" /&gt;</code>
-			<code>  &lt;/animateMotion&gt;</code>
-			<code>&lt;/svg&gt;</code>
-		</pre>
-		<svg width="500" height="350" viewBox="0 0 500 350" style="position: absolute; bottom: 0; right: 0">
-		  <path id="motionPath" fill="none" stroke="#000000" stroke-miterlimit="10" d="M202.4,58.3c-13.8,0.1-33.3,0.4-44.8,9.2
-		    c-14,10.7-26.2,29.2-31.9,45.6c-7.8,22.2-13.5,48-3.5,70.2c12.8,28.2,47.1,43.6,68.8,63.6c19.6,18.1,43.4,26.1,69.5,29.4
-		    c21.7,2.7,43.6,3.3,65.4,4.7c19.4,1.3,33.9-7.7,51.2-15.3c24.4-10.7,38.2-44,40.9-68.9c1.8-16.7,3.4-34.9-10.3-46.5
-		    c-9.5-8-22.6-8.1-33.2-14.1c-13.7-7.7-27.4-17.2-39.7-26.8c-5.4-4.2-10.4-8.8-15.8-12.9c-4.5-3.5-8.1-8.3-13.2-11
-		    c-6.2-3.3-14.3-5.4-20.9-8.2c-5-2.1-9.5-5.2-14.3-7.6c-6.5-3.3-12.1-7.4-19.3-8.9c-6-1.2-12.4-1.3-18.6-1.5
-		    C222.5,59,212.5,57.8,202.4,58.3"/>
+<pre>
+	<code>&lt;svg width="300" height="300" viewBox="0 0 300 300" style="position: absolute; bottom: 0; right: 0"&gt;</code>
+	<code>  &lt;path 
+	id="motionPath" 
+	fill="none" 
+	stroke="#000000" 
+	stroke-miterlimit="10" 
+	d="M40 155c-23-84 72-29 110 0 40 33 120 59 110 0-18-112-204 58-220 0z"/&gt;</code>			      
+	<code>  &lt;circle id="circle" r="10" cx="0" cy="0" fill="tomato" /&gt;</code>			       
+	<code>  &lt;animateMotion 
+	xlink:href="#circle"
+	dur="5s"
+	begin="0s"
+    fill="freeze"
+    repeatCount="indefinite"&gt;</code>
+	<code>    &lt;mpath xlink:href="#motionPath" /&gt;</code>
+	<code>  &lt;/animateMotion&gt;</code>
+	<code>&lt;/svg&gt;</code>
+</pre>
+		<svg width="300" height="300" viewBox="0 0 300 300" style="position: absolute; bottom: 100px; right: 100px;">
+		  <path id="motionPath" fill="none" stroke="#000000" stroke-miterlimit="10" d="M40 155c-23-84 72-29 110 0 40 33 120 59 110 0-18-112-204 58-220 0z"/>
 		  
 		  <circle id="circle" r="10" cx="0" cy="0" fill="tomato" />
 		   
@@ -552,6 +589,21 @@
 		    <mpath xlink:href="#motionPath" />
 		  </animateMotion>
 		</svg>
+	</div></section>
+
+	<section class="slide"><div>
+		<p>Snap.svg — <a href="http://snapsvg.io/start/">http://snapsvg.io/start/</a></p>
+		<pre>&lt;svg id="svg"&gt;&lt;/svg&gt;</pre>
+		<pre>
+			<code>var s = Snap("#svg");</code>
+			<code>var circle = s.circle(150, 150, 100);</code>
+			<code>circle.attr({</code>
+			<code>	fill: "#bada55",</code>
+			<code>	stroke: "#000",</code>
+			<code>	strokeWidth: 5</code>
+			<code>});</code>
+			<code>circle.animate({r: 50}, 1000);</code>
+		</pre>
 	</div></section>
 
 	<section class="slide"><div>
@@ -625,9 +677,11 @@
 			<li>Gecko (Firefox)</li>
 			<li>IE</li>
 		</ul>
+		Can I Use — <a href="http://caniuse.com/">http://caniuse.com/</a>
 	</div></section>
 	<section class="slide"><div>
-		<p><b>Префиксы</b></p>
+		<b>Префиксы</b><br/>
+		-webkit, -moz, -ms, -o
 		<pre>
 			<code>.selector {</code>
 			<code>	display: -webkit-flex;</code>
@@ -637,6 +691,12 @@
 			<code>	-ms-flex-pack: justify;</code>
 			<code>	justify-content: space-between;</code>
 			<code>}</code>
+		</pre>
+		gulp
+		<pre>
+			<code>.pipe(autoprefixer({</code>
+		    <code>    browsers: ['last 2 versions']</code>
+		    <code>}))</code>
 		</pre>
 	</div></section>
 
@@ -658,13 +718,13 @@
 		<p>Graceful degradation, Progressive Enhancement.</p>
 	</div></section>
 	<section class="slide"><div>
-		<b>Modernizr.js (<a href="https://modernizr.com/">https://modernizr.com/</a>)</b>
+		<p><b>Modernizr.js</b> (<a href="https://modernizr.com/">https://modernizr.com/</a>)</p>
+		Google Chrome 46.0
 		<pre>
-			<code>// Google Chrome 46.0</code>
 			<code>&lt;html class="no-touch cssanimations csstransforms csstransforms3d csstransitions mediaqueries"&gt;</code>
 		</pre>
+		IE 8
 		<pre>
-			<code>// IE 8</code>
 			<code>&lt;html class="no-touch no-cssanimations no-csstransforms no-csstransforms3d no-csstransitions 
 			no-mediaqueries"&gt;</code>
 		</pre>
@@ -672,10 +732,13 @@
 
 	<section class="slide"><div>
 		<h2>Адаптивность.</h2>
-		<p>Утройства с разным рамером экранов и dpi - десктопы, планшеты, телефоны.<br/>
-		В css реализуется через Media Queries.</p>
+		<p>Утройства с разными рамероми и разрешениями экранов.<br/>
 		<pre>
-			<code>@media screen and (max-width: 768px) and (max-device-width: 1024px) {</code>
+			<code>&lt;meta name="viewport" content="width=device-width"&gt;</code>
+		</pre>
+		Media Queries.</p>
+		<pre>
+			<code>@media screen and (max-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {</code>
 			<code>	/* tablet styles */</code>
 			<code>}</code>
 
@@ -692,7 +755,7 @@
 	<section class="slide"><div>
 		<ul>
 			<li>общаться</li>
-			<li>спорить</li>
+			<li>научиться адекватно оценивать сроки</li>
 			<li>обращаться за помощью</li>
 			<li>помогать друг-другу</li>
 			<li>не бояться сделать работу за другого</li>
@@ -724,7 +787,7 @@
 
 	<section class="slide"><div>
 		<p>Эта презентация создана с помощью <b>Shower HTML presentation engine</b> Вадима Макеева — <a href="https://github.com/shower/shower">https://github.com/shower/shower</a></p>
-		<blockquote>Мир фронтенда — бегун на костылях в принципе, но бегун быстрый.</blockquote>
+		<blockquote>Мир фронтенда — бегун на костылях, но бегун быстрый.</blockquote>
 		<br/>
 		<h2>Спасибо за внимание!</h2>
 	</div></section>
