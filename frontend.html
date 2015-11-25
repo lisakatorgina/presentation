@@ -105,9 +105,6 @@
 		</ul>
 	</div></section>
 	<section class="slide"><div>
-		<p>Несмотря на то, что большинство разработчиков предпочитают работать с JS через библиотеки, такие как JQuery, необходимо понимать как работает язык и уметь пользваться его возможностями.</p>
-	</div></section>
-	<section class="slide"><div>
 		<img src="pictures/1.png" alt="" style="height: 90%; display: block; margin: 0 auto;">
 	</div></section>
 	<section class="slide"><div>
@@ -332,25 +329,54 @@
 		</pre>
 	</div></section>
 	<section class="slide code-section"><div>
-		<pre>
-			<code>.loop (@­index) when (@­index > 0) {</code>
-			<code>  .myclass {</code>
-			<code>    z-index: @­index;</code>
+		<pre class="half">
+			<code>.mixin(@variable) {</code>
+			<code>  & when (@variable = 1) {</code>
+			<code>    width: 100px;</code>
 			<code>  }</code>
-			<code>  // Call itself</code>
-			<code>  .loopingClass(@­index - 1);</code>
+			<code>  & when not (@variable = 1) {</code>
+			<code>   	height: 100px;</code>
+			<code>  }</code>
 			<code>}</code>
-			<code>// Stop loop</code>
-			<code>.loopingClass (0) {}</code>
-			<code>// Outputs stuff</code>
-			<code>.loopingClass (10);</code>
+			<code>.class-test1 {.mixin(1)}</code>
+			<code>  .mixin(1);</code>
+			<code>}</code>
+			<code>.class-test2 {</code>
+			<code>  .mixin(2);</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>.class-test1 {</code>
+			<code>  width: 100px;</code>
+			<code>}</code>
+			<code>.class-test2 {</code>
+			<code>  height: 100px;</code>
+			<code>}</code>
+		</pre>
+	</div></section>
+	<section class="slide code-section"><div>
+		<pre>
+			<code>@list: 10px, 100px, 1000px;</code>
+			<code>.generator(@index: 1) when (@index <= length(@list)) {</code>
+			<code>	@value: extract(@list, @index);</code>
+			<code>	.width-@{index} {</code>
+			<code>		width: @value;</code>
+			<code>	}</code>
+			<code>	.generator(@index+1);</code>
+			<code>}</code>
+			<code>.generator();</code>
+		</pre>
+		<pre>
+			<code>.width-1 {width: 10px;}</code>
+			<code>.width-2 {width: 100px;}</code>
+			<code>.width-3 {width: 1000px;}</code>
 		</pre>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Системы сборки</h2>
 		<b>Gulp, Grunt, Webpack.</b>
 		<ul>
-			<li>работают на node.js, ставятся с помщью npm</li>
+			<li>работают на node.js, ставятся с помщью npm или bower</li>
 			<li>компилируют и обрабатывают css, js, шаблоны, графику</li>
 			<li>расширяемы плагинами</li>
 			<p>gulp-less, gulp-autoprefixer, gulp-concat</p>
@@ -387,12 +413,12 @@
 		<h2>SVG</h2>
 		— Язык разметки масштабируемой векторной графики
 		<ul>
-			<li>встраивается инлайн, <img> и background-image</li>
+			<li>встраивается и инлайн и как обычное изображение</li>
 			<li>может быть стилизован и анимирован с помощью css</li>
-			<li>поддерживает анимацию (декларативну и js)</li>
+			<li>поддерживает собственную анимацию (декларативную и js)</li>
 			<li>решает проблему с масштабированием графики под retina-дисплеи</li>
 			<li>мало весит по сравнению с растровыми форматами</li>
-			<li>существуют библиотеки для работы (Raphael.js, Snap.svg)</li>
+			<li>библиотеки (Raphael.js, Snap.svg)</li>
 			<li>хорошая браузерная поддержка (ie9+)</li>
 		</ul>
 	</div></section>
@@ -485,6 +511,10 @@
 			  border-radius: 50%;
 			  position: relative;
 			  -webkit-animation: move 3s infinite;
+			  display: none;
+			}
+			.active .cir {
+				display: block;
 			}
 			@-webkit-keyframes move {
 			  0% {left:0;transform: scale(1);}
@@ -592,8 +622,8 @@
 	</div></section>
 
 	<section class="slide"><div>
-		<p>Snap.svg — <a href="http://snapsvg.io/start/">http://snapsvg.io/start/</a></p>
-		<pre>&lt;svg id="svg"&gt;&lt;/svg&gt;</pre>
+		<p>Snap.svg — <a href="http://snapsvg.io/">http://snapsvg.io</a></p>
+		<pre>&lt;svg id="svg" width="300" height="300" &gt;&lt;/svg&gt;</pre>
 		<pre>
 			<code>var s = Snap("#svg");</code>
 			<code>var circle = s.circle(150, 150, 100);</code>
@@ -669,13 +699,15 @@
 	</div></section>
 
 	<section class="slide"><div>
-		<h2>Кроссбраузерность.</h2>
+		<h2>Кроссбраузерность</h2>
 		<b>Основные движки:</b>
 		<ul>
-			<li>WebKit (используется Safari, вырос из KHTML)</li>
-			<li>Blink (Chrome, Opera и 300 форков Chromium)</li>
+			<li>WebKit — вырос из KHTML (Safari, Google Chrome)</li>
+			<li>Blink - вырос из WebKit (Google Chrome с 28 версии и Opera 15)</li>
 			<li>Gecko (Firefox)</li>
-			<li>IE</li>
+			<li>Presto (Opera)</li>
+			<li>Trident (IE)</li>
+			<li>Edge (Microsoft Edge)</li>
 		</ul>
 		Can I Use — <a href="http://caniuse.com/">http://caniuse.com/</a>
 	</div></section>
