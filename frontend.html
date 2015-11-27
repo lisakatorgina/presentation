@@ -73,8 +73,8 @@
 		</style>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Client-side</h2>
-		<p>- то, что понимает браузер</p>
+		<h2>Client-side = Frontend</h2>
+		<p>- то, что понимает браузер.</p>
 		<ul>
 			<li class="next">HTML</li>
 			<li class="next">CSS</li>
@@ -84,7 +84,7 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>Frontend-разработка</h2>
-		<p>- совокупность всего того, что мы делаем и чем при этом пользуется, для того, чтобы браузер нас понимал.</p>
+		<p>- совокупность всего того, что мы делаем и чем при этом пользуется, для того, чтобы отдать браузеру то, что он понимает.</p>
 		<ul>
 			<li class="next">технологии</li>
 			<li class="next">инструменты</li>
@@ -729,7 +729,7 @@
 			<code>	justify-content: space-between;</code>
 			<code>}</code>
 		</pre>
-		gulp
+		gulp-autoprefixer
 		<pre>
 			<code>.pipe(autoprefixer({</code>
 		    <code>    browsers: ['last 2 versions']</code>
@@ -755,7 +755,7 @@
 		<p>Graceful degradation, Progressive Enhancement.</p>
 	</div></section>
 	<section class="slide"><div>
-		<p><b>Modernizr.js</b> (<a href="https://modernizr.com/">https://modernizr.com/</a>)</p>
+		<p><b>Modernizr.js</b> (<a href="https://modernizr.com/">https://modernizr.com/</a>) — определяет какие css и js свойства поддерживает браузер</p>
 		Google Chrome 46.0
 		<pre>
 			<code>&lt;html class="no-touch cssanimations csstransforms csstransforms3d csstransitions mediaqueries"&gt;</code>
@@ -764,6 +764,13 @@
 		<pre>
 			<code>&lt;html class="no-touch no-cssanimations no-csstransforms no-csstransforms3d no-csstransitions 
 			no-mediaqueries"&gt;</code>
+		</pre>
+		<pre>
+			<code>if (Modernizr.touchevents) {</code>
+			<code>    //do something</code>
+			<code>} else {</code>
+			<code>    //do another</code>
+			<code>})</code>
 		</pre>
 	</div></section>
 
@@ -792,12 +799,12 @@
 	<section class="slide"><div>
 		<ul>
 			<li>общаться</li>
-			<li>научиться адекватно оценивать сроки</li>
 			<li>обращаться за помощью</li>
 			<li>помогать друг-другу</li>
 			<li>не бояться сделать работу за другого</li>
-			<li>не бояться отказывать и не делать лишнего</li>
-			<li>не бояться вредрять новые технологические решения</li>
+			<li>не делать лишнего</li>
+			<li>вредрять новые технологические решения</li>
+			<li>научиться адекватно оценивать сроки</li>
 		</ul>
 	</div></section>
 
@@ -819,7 +826,7 @@
 		CodePen — <a href="http://codepen.io/">http://codepen.io/</a><br/>
 		Coderops — <a href="http://tympanus.net/codrops/">http://tympanus.net/codrops/</a><br/>
 		Google Developers — <a href="https://developers.google.com/web/fundamentals/">https://developers.google.com/web/fundamentals/</a>
-		cssunderhood.ru (Коллективный твиттер-аккаунт для верстальщиков) — <a href="https://cssunderhood.ru/">https://cssunderhood.ru/</a>
+		Сssunderhood.ru (Коллективный твиттер-аккаунт для верстальщиков) — <a href="https://cssunderhood.ru/">https://cssunderhood.ru/</a>
 	</div></section>
 
 	<section class="slide"><div>
