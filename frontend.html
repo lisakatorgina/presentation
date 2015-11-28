@@ -97,7 +97,7 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>JavaScript</h2>
-		<p>— прототипно-ориентированный сценарный язык программирования. Является реализацией языка ECMAScript. JS поддерживаемый сейчас большинством браузеров, работает на ES5.</p>
+		<p>— прототипно-ориентированный сценарный язык программирования. Является реализацией языка ECMAScript. JavaScript, поддерживаемый сейчас большинством браузеров, работает на ES5.</p>
 		<ul>
 			<li class="next">библиотеки и плагины (JQuery)</li>
 			<li class="next">транслирумые языки (CoffeScript)</li>
@@ -292,8 +292,8 @@
 	<section class="slide code-section"><div>
 		<pre class="half">
 			<code>@yellow: #ffc000;</code>
-			<code>@size: 200px;</code>
-			<code>.round(@size) {</code>
+			<code>@my_size: 200px;</code>
+			<code>.round(@size: 100) {</code>
 			<code>	border-radius: 50%;</code>
 			<code>	width: @size;</code>
 			<code>	height: @size;</code>
@@ -301,11 +301,11 @@
 			<code></code>
 			<code>.block1 {</code>
 			<code>	background: @yellow;</code>
-			<code>	.round(@size)</code>
+			<code>	.round(@my_size)</code>
 			<code>}</code>
 			<code>.block2 {</code>
 			<code>	background: @yellow + 20;</code>
-			<code>	.round(@size*2)</code>
+			<code>	.round(@my_size*2)</code>
 			<code>}</code>
 		</pre>
 		<pre class="half">
