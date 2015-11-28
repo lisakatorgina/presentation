@@ -99,9 +99,9 @@
 		<h2>JavaScript</h2>
 		<p>— прототипно-ориентированный сценарный язык программирования. Является реализацией языка ECMAScript. JS поддерживаемый сейчас большинством браузеров, работает на ES5.</p>
 		<ul>
-			<li>транслирумые языки (CoffeScript, Babel)</li>
-			<li>плагины и библиотеки (JQuery)</li>
-			<li>ECMAScript 6</li>
+			<li class="next">библиотеки и плагины (JQuery)</li>
+			<li class="next">транслирумые языки (CoffeScript)</li>
+			<li class="next">ECMAScript 6 (Babel)</li>
 		</ul>
 	</div></section>
 	<section class="slide"><div>
@@ -109,16 +109,13 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>Шаблонизаторы.</h2>
+		<p>Основная цель - отделение представления данных от исполняемого кода.</p>
 		Решают такие проблемы:
 		<ul>
 			<li>декомпозиция и систематизация (разделение кода на части)</li>
 			<li>повторное использование кода</li>
 			<li>получение, обработка и использование данных с сервера</li>
 			<li>автоматизация и ускорение написания кода</li>
-		</ul>
-		<ul>
-			<li>серверные</li>
-			<li>клиентские</li>
 		</ul>
 	</div></section>
 	<section class="slide code-section"><div>
@@ -221,12 +218,10 @@
 	<section class="slide"><div>
 		<h2>Работа с CSS</h2>
 		<ul>
-			<li>препроцессоры (less, sass, stylus)</li>
-			<li>постпроцссоры (autoprefixer, csscomb)</li>
-			<li>PostCss</li>
+			<li class="next">препроцессоры (less, sass, stylus)</li>
+			<li class="next">постпроцессоры (autoprefixer, csscomb)</li>
+			<li class="next">PostCss</li>
 		</ul>
-		<p class="small-text"><b>PostCss</b> берет CSS и превращает в вид данных, которые можно изменять с помощью Яваскрипт. Основанные на Яваскрипт плагины, позволяют изменять код. PostCss сам по себе ничего не изменяет, он всего лишь прокладывает путь для плагинов, которые делают изменения и траснформации для которого они созданы.</p>
-		<p class="small-text">Плагины PostCss, могут вести себя как препроцессоры: могут оптимизировать и добавлять префиксы в код, могут добавлять синтаксис из будущих спецификаций, могут выполнять проверку, могут производить переменные и логику, можно создавать сетки...этот список очень длинный и разнообразный.</p>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Препроцессоры</h2>
@@ -373,6 +368,58 @@
 		</pre>
 	</div></section>
 	<section class="slide"><div>
+		<p><b>PostCss</b> берет CSS и превращает в вид данных, которые можно изменять с помощью Яваскрипт. Основанные на Яваскрипт плагины, позволяют изменять код. PostCss сам по себе ничего не изменяет, он всего лишь прокладывает путь для плагинов, которые делают изменения и траснформации для которого они созданы.</p>
+		<p>Плагины PostCss, могут вести себя как препроцессоры: могут оптимизировать и добавлять префиксы в код, могут добавлять синтаксис из будущих спецификаций, могут выполнять проверку, могут производить переменные и логику, можно создавать сетки...этот список очень длинный и разнообразный.</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<pre class="half">
+			<code>.foo {</code>
+			<code>  clear: fix;</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>.foo:after{</code>
+			<code>  content: '';</code>
+			<code>  display: table;</code>
+			<code>  clear: both;</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>.hello {</code>
+			<code>	border-bottom: 1px solid rgb(200);</code>
+			<code>	background: #20;</code>
+			<code>	box-shadow: 0 1px 5px rgba(0, 0.5);</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>.hello {</code>
+			<code>  border-bottom: 1px solid rgb(200, 200, 200);</code>
+			<code>  background: #202020;</code>
+			<code>  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>.two {</code>
+			<code>    size: 20px 10px;</code>
+			<code>}</code>
+			<code>.one {</code>
+			<code>    size: 10px;</code>
+			<code>}</code>
+		</pre>
+		<pre class="half">
+			<code>.two {</code>
+			<code>    width: 20px;</code>
+			<code>    height: 10px;</code>
+			<code>}</code>
+			<code>.one {</code>
+			<code>    width: 10px;</code>
+			<code>    height: 10px;</code>
+			<code>}</code>
+		</pre>
+	</div></section>
+
+	<section class="slide"><div>
 		<h2>Системы сборки</h2>
 		<b>Gulp, Grunt, Webpack.</b>
 		<ul>
@@ -388,7 +435,7 @@
 		</ul>
 	</div></section>
 	<section class="slide"><div>
-		<pre class="shell">
+		<pre class="shell" style="margin: 0;">
 			<code>$ npm install gulp-less</code>
 		</pre>
 		gulpfile.js
@@ -403,9 +450,11 @@
 			<code>	}))</code>
 			<code>	.pipe(gulp.dest('./css'));</code>
 			<code>});</code>
-		</pre>
-		<pre class="shell">
-			<code>$ gulp less</code>
+			<code>gulp.task('default', function() {</code>
+			<code>  gulp.watch("./**/*.less", function(event){</code>
+			<code>    gulp.run('less');</code>
+			<code>  });</code>
+			<code>})</code>
 		</pre>
 	</div></section>
 
@@ -690,7 +739,7 @@
 		<h2>Браузерные инструменты</h2>
 		<ul>
 			<li>просматривать DOM и CSS свойства, применяемые к его элементам</li>
-			<li>можно изменять значения свойств</li>
+			<li>изменять значения свойств</li>
 			<li>отлаживать JavaScript (console.log(), info, debug, warn, error итд)</li>
 			<li>есть режим мобильных устройств для просмотра адаптивности</li>
 			<li>вкладка resource</li>
@@ -775,12 +824,12 @@
 	</div></section>
 
 	<section class="slide"><div>
-		<h2>Адаптивность.</h2>
-		<p>Утройства с разными рамероми и разрешениями экранов.<br/>
+		<h2>Адаптивность</h2>
+		<p>Утройства с разными рамерами и разрешениями экранов.<br/>
 		<pre>
 			<code>&lt;meta name="viewport" content="width=device-width"&gt;</code>
 		</pre>
-		Media Queries.</p>
+		Media Queries</p>
 		<pre>
 			<code>@media screen and (max-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {</code>
 			<code>	/* tablet styles */</code>
