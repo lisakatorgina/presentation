@@ -1,2 +1,2 @@
-# My frontend presetnation
-Недоделано.
+# Frontend presetnation
+http://lisakatorgina.github.io/presentation/
